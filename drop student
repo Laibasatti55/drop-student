@@ -1,103 +1,103 @@
 #include <iostream>
 #include <string>
 
-Using namespace std;
+using namespace std;
 
-Class Course {
-Private:
-    String course Name;
-    String* students;
-    Int numStudents;
-    Int maxStudents;
+class Course {
+private:
+    string  Name;
+    string* students;
+    int numStudents;
+    int maxStudents;
 
-Public:
+public:
     // Constructor
-    Course(const string& name, int max) : courseName(name), numStudents(0), maxStudents(max) {
-        Students = new string[maxStudents];
+    Course(const string& name, int max) : Name(name), numStudents(0), maxStudents(max) {
+        students = new string[maxStudents];
     }
 
     // Deep copy constructor
-    Course(const Course& other) : courseName(other.courseName), numStudents(other.numStudents), maxStudents(other.maxStudents) {
-        Students = new string[maxStudents];
-        For (int I = 0; I < numStudents; ++i) {
-            Students[i] = other.students[i];
+    Course(const Course& other) : Name(other.Name), numStudents(other.numStudents), maxStudents(other.maxStudents) {
+        students = new string[maxStudents];
+        for (int i = 0; i < numStudents; ++i) {
+            students[i] = other.students[i];
         }
     }
 // https://github.com/Laibasatti55/drop-student.git
 
     // Destructor
     ~Course() {
-        Delete[] students;
+        delete[] students;
     }
 
     // Function to get the course name
-    String getCourseName() const {
-        Return courseName;
+    string getCourseName() const {
+        return Name;
     }
 
     // Function to add a new student
-    Void addStudent(const string& studentName) {
-        If (numStudents < maxStudents) {
-            Students[numStudents] = studentName;
+    void addStudent(const string& studentName) {
+        if (numStudents < maxStudents) {
+            students[numStudents] = studentName;
             ++numStudents;
         } else {
-            Cout << “Course is full. Cannot add more students.” << endl;
+            cout << "Course is full. Cannot add more students." << endl;
         }
     }
 
     // Function to drop a student
-    Void dropStudent(const string& studentName) {
-        For (int I = 0; I < numStudents; ++i) {
-            If (students[i] == studentName) {
+    void dropStudent(const string& studentName) {
+        for (int i = 0; i < numStudents; ++i) {
+            if (students[i] == studentName) {
                 // Shift remaining elements to fill the gap
-                For (int j = I; j < numStudents – 1; ++j) {
-                    Students[j] = students[j + 1];
+                for (int j = i; j < numStudents - 1; ++j) {
+                    students[j] = students[j + 1];
                 }
                 --numStudents;
-                Return; // Student found and dropped
+                return; // Student found and dropped
             }
         }
-        Cout << “Student not found in the course.” << endl;
+        cout << "Student not found in the course." << endl;
     }
 
     // Function to get the array of students
-    Const string* getStudents() const {
-        Return students;
+    const string* getStudents() const {
+        return students;
     }
 
     // Function to get the number of students
-    Int getNumStudents() const {
-        Return numStudents;
+    int getNumStudents() const {
+        return numStudents;
     }
 };
 
-Int main() {
+int main() {
     // Example usage in the main function
-    Course course1(“Math”, 3);
-    Course1.addStudent(“Alice”);
-    Course1.addStudent(“Bob”);
+    Course course1("Math", 3);
+    course1.addStudent("Alice");
+course1.addStudent("Bob");
 
     // Deep copy using copy constructor
     Course course2 = course1;
 
     // Drop a student from course2
-    Course2.dropStudent(“Alice”);
+    course2.dropStudent("Alice");
 
     // Output course names and students
-    Cout << “Course 1: “ << course1.getCourseName() << endl;
-    Cout << “Students in Course 1: “;
-    For (int I = 0; I < course1.getNumStudents(); ++i) {
-        Cout << course1.getStudents()[i] << “ “;
+    cout << "Course 1: " << course1.getCourseName() << endl;
+    cout << "Students in Course 1: ";
+    for (int i = 0; i < course1.getNumStudents(); ++i) {
+        cout << course1.getStudents()[i] << " ";
     }
-    Cout << endl;
+    cout << endl;
 
-    Cout << “Course 2: “ << course2.getCourseName() << endl;
-    Cout << “Students in Course 2: “;
-    For (int I = 0; I < course2.getNumStudents(); ++i) {
-        Cout << course2.getStudents()[i] << “ “;
+    cout << "Course 2: " << course2.getCourseName() << endl;
+    cout << "Students in Course 2: ";
+    for (int i = 0; i < course2.getNumStudents(); ++i) {
+        cout << course2.getStudents()[i] << " ";
     }
-    Cout << endl;
+    cout << endl;
 
-    Return 0;
+    return 0;
 }
 
